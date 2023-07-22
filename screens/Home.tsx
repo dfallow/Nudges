@@ -38,15 +38,13 @@ const Home: React.FC<Props> = ({ route, navigation }) => {
                         Alert.alert("Modal has been closed.");
                     setModalVisible(!modalVisible);
                     }}>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modal}>
+                                {modalType === 'Nudge' && <AddNudge onClose={() => setModalVisible(!modalVisible)}/>}
 
-                    {
-                        modalType === 'nudge' ? (
-                            <AddNudge onClose={() => setModalVisible(!modalVisible)}/>
-                        ) : (
-                            <AddContact onClose={() => setModalVisible(!modalVisible)}/>
-                        )
-                    }
-
+                                {modalType === 'Contact' && <AddContact onClose={() => setModalVisible(!modalVisible)}/>}
+                            </View>
+                        </View>
                     </Modal>
 
                 <View style={styles.btnGroup}>
@@ -115,6 +113,24 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-evenly',
         marginVertical: 10,
-    }
+    },
+    centeredView: { 
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    modal: {
+        width: '100%',
+        height: '50%',
+        alignSelf: 'center',
+        justifySelf: 'center',
+        borderWidth: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+    },
   });
   
